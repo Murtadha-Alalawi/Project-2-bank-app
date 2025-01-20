@@ -1,4 +1,3 @@
-const { application } = require('express');
 const mongoose = require('mongoose');
 
 const applicationSchema = new mongoose.Schema({
@@ -19,9 +18,24 @@ const applicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    age: {
+        type: Number,
+        required: true,
+        min: 18,
+        max: 100
+    },
     status: {
         type: String,
         required: ['student', 'employed', 'unemployed', 'self-employed']
+    },
+    applicationStatus: {
+        type: Boolean,
+        default: false,
+        required: true 
+    },
+    applicationDate: {
+        type: Date,
+        default: Date.now
     }
 });
 
