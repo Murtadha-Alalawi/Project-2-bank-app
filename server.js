@@ -11,7 +11,10 @@ require('dotenv').config()
 const mongoose = require("mongoose")
 console.log('Dev Branch')
 const authController = require('./controllers/auth')
-
+const session = require('express-session');
+const isSignedIn = require("./middleware/is-signed-in.js")
+const passUserToView = require('./middleware/pass-user-to-view.js')
+const bankController = require('./controllers/bankApp.js')
 
 
 
