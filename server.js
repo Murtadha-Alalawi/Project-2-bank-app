@@ -30,6 +30,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
   }));
+  app.use(passUserToView)
 
 // =======================
 // 3. CONNECTION TO DATABASE
@@ -53,10 +54,10 @@ app.get('/', (req, res) => {
 })
 app.use('/auth', authController)
 app.use(isSignedIn)
-app.use(passUserToView)
+
 app.use("/users/:userId/bank-accounts",bankController)
 
-app.use("/auth",authController)
+
 
 
 
