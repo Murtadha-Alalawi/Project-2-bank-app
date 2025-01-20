@@ -31,21 +31,22 @@ required: true
 {type: String,
 required: ["student","employee","unemployed","self-employed","retired","other"]
 },
-    status:
-{type: String,
-required:["pending","approved","rejected"]
-},
-    pplicationDate:
+    applicationDate:
 {type: Date,
 required: true
 },
+    applicationStatus:
+{type: String,
+required: ["pending","approved","rejected"]
+},
+
 
 
    
 })
 
 const userSchema = new mongoose.Schema({
-   username:
+   email:
     {type: String,
     required: true,
     unique: true},
