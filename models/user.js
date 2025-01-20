@@ -39,14 +39,10 @@ required: true
 {type: String,
 required: ["pending","approved","rejected"]
 },
-    password:
-{type: String,
-required: true
-},
-    confirmPassword:
-{type: String,
-required: true
-}
+
+
+
+   
 })
 
 const userSchema = new mongoose.Schema({
