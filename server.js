@@ -8,6 +8,7 @@ const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
 console.log('Dev Branch')
+const authController = require('./controllers/auth')
 
 
 
@@ -34,7 +35,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // 4. ROUTES
 // =======================
 
-
+app.use("/auth",authController)
 
 
 
