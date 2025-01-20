@@ -1,6 +1,8 @@
 // =======================
 // 1. IMPORTS
 // =======================
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const app = express();
 const methodOverride = require("method-override");
@@ -13,20 +15,25 @@ const authController = require('./controllers/auth')
 
 
 
+
 // =======================
 // 2. MIDDLEWARE
 // =======================
-app.use(express.urlencoded({ extended: false })); // parses the request body. Needed for the req.body
-app.use(methodOverride("_method")); // Will change the methods for
-app.use(morgan("dev")); // Logs the requests in the terminal
-
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+app.use(morgan("dev")); 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  }));
 
 // =======================
 // 3. CONNECTION TO DATABASE
 // =======================
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{console.log("Connected to DATABSE")})
-.catch(()=>{console.log("ERROR CONNECTING TO DB OMAR")})
+.catch(()=>{console.log("ERROR CONNECTING TO DB LOAI")})
 
 
 
@@ -34,6 +41,17 @@ mongoose.connect(process.env.MONGODB_URI)
 // =======================
 // 4. ROUTES
 // =======================
+app.get('/', (req, res) => {
+  if(req.session.user){
+    res.redirect('/users/:userId/bank-accounts')
+  }else{
+    res.render('index.ejs')
+  }
+})
+app.use('/auth', authController)
+app.use(isSignedIn)
+app.use(passUserToView)
+app.use("/users/:userId/bank-accounts",bankController)
 
 app.use("/auth",authController)
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form action="/auth/sign-up" method="post">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Username" id="username" required placeholder="Username">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" id="password" required placeholder="Password" minlength="8">
+        <label for="age">Age</label>
+        <input type="number" name="age" placeholder="Age" id="age" required placeholder="Age" min="18" max="100">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" id="email" required placeholder="example@gmail.com">
+        <label for="address">Address</label>
+        <input type="text" name="address" placeholder="Address" id="address" required placeholder="Address">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" placeholder="Phone" id="phone" required placeholder="000973-0000000">
+        <label for="applicationStatus">Application Status</label>
+        <input type="checkbox" name="applicationStatus" placeholder="Application Status" id="applicationStatus" required placeholder="Application Status">
+        <label for="applicationDate">Application Date</label>
+        <input type="date" name="applicationDate" placeholder="Application Date" id="applicationDate" required placeholder="Application Date">
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
