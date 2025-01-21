@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a new application</h1>
+
+    <form action="'/users/<%=user._id%>/applications" method="POST">
+
+        <label for="company">Company</label>
+        <input type="text" name="company" id="company">
+
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+
+        <label for="notes">Notes</label>
+        <input type="text" name="notes" id="notes">
+
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="interested">interested</option>
+            <option value="applied">applied</option>
+            <option value="interviewing">interviewing</option>
+            <option value="rejected">rejected</option>
+            <option value="accepted">accepted</option>
+        </select>
+
+        <button type="submit">Add application</button>
+    </form>
+</body>
+</html>
