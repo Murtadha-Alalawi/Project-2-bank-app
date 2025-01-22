@@ -6,9 +6,12 @@
     <title>Applications</title>
 </head>
 <body>
-    <h1>Applications</h1>
-    <a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a>
+    <h1>GA Bank App</h1>
+    <h2>Welcome <%= user.firstName %> to GA Bank App</h2>
+    <ul>
+        <li><a href="/users/<%=user._id%>/bank-accounts">View your Account</a></li>
+        <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a></li>
     </ul>
-
+    
 </body>
 </html>

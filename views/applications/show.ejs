@@ -6,15 +6,17 @@
     <title>show All Account</title>
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
     <h1>Welcome to <%= application.name %> Account</h1>
-    <a href="/applications/<%= application._id %>/transactions">Transactions</a>
-    <a href="/applications/<%= application._id %>/edit">Edit Account</a>
-    <a href="/applications/<%= application._id %>/delete">Delete Account</a>
-    <a href="/applications/<%= application._id %>/deposit">Deposit</a>
-    <a href="/applications/<%= application._id %>/withdraw">Withdraw</a>
-    <a href="/applications/<%= application._id %>/transfer">Transfer</a>
-    <a href="/applications/<%= application._id %>/balance">Balance</a>
+    <h2>Your Account</h2>
+    <ul>
+        <li><a href="/applications/<%= application._id %>/transactions">Transactions</a></li>
+        <li><a href="/applications/<%= application._id %>/edit">Edit Account</a></li>
+        <li><a href="/applications/<%= application._id %>/delete">Delete Account</a></li>
+        <li><a href="/applications/<%= application._id %>/deposit">Deposit</a></li>
+        <li><a href="/applications/<%= application._id %>/withdraw">Withdraw</a></li>
+        <li><a href="/applications/<%= application._id %>/transfer">Transfer</a></li>
+        <li><a href="/applications/<%= application._id %>/balance">Balance</a></li>
+    </ul>
 
 </body>
-</html>
+</html> 
