@@ -39,10 +39,7 @@ required: true
 {type: String,
 required: ["pending","approved","rejected"]
 },
-
-
-
-   
+ 
 })
 
 const userSchema = new mongoose.Schema({
