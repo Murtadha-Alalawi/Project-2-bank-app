@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
     res.render('index.ejs',{application:currentUser.applications})
    } catch (error) {
-    res.redirect('/')
+    res.render('error.ejs')
    }
 })
 
@@ -35,7 +35,7 @@ router.post('/', async (req,res)=>{
         
 
     } catch (error) {
-        res.redirect('/')
+        res.render('error.ejs')
     }
 })
 
@@ -48,7 +48,7 @@ router.get('/applicationId', async (req,res)=>{
         res.render('applications/show.ejs',{application:application})
     } catch (error) {
        
-        res.redirect('/')
+        res.render('error.ejs')
     }
 })
 
@@ -62,7 +62,7 @@ router.delete('/:applicationId', async (req,res)=>{
 
         res.redirect(`/users/${currentUser._id}/applications`)
     } catch (error) {
-        res.redirect('/')
+        res.render('error.ejs')
     }
 })
 
@@ -74,7 +74,7 @@ router.get('/:applicationdId/edit', async (req,res)=>{
             application:application
         })
     } catch (error) {
-        res.redirect('/')
+        res.render('error.ejs')
     }
 })
 
@@ -87,5 +87,10 @@ router.put('/:applicationId', async (req,res)=>{
 
     res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
 })
+
+router.get('/error', (req,res)=>{
+    res.render('error.ejs')
+})
+
 
 module.exports = router;
