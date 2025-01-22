@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank App</title>
+    <title>Applications</title>
 </head>
 <body>
-    <h1>Welcome to GA Bank App</h1>
-    <p>This is a simple bank app.</p>
-    <% if (user) { %>
-        <p>Welcome, <%= user.name %>!</p>
-    <% } else { %>
-        <p>Please <a href="/auth/sign-up">sign up</a> or <a href="/auth/sign-in">sign in</a> to continue.</p>
-    <% } %>
+    <h1>Applications</h1>
+    <a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a>
+    <h2>Your Account</h2>
+    <ul>
+        <% application.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>"><%= application.name %></a></li>
+        <% }) %>
+    </ul>
+    <h2>Your Dashboard</h2>
+    <ul>
+        <% application.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/show">Dashboard</a></li>
+        <% }) %>
+    </ul>
+    <h2>Edit Your Information</h2>
+    <ul>
+        <% application.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/edit">Edit Your Information</a></li>
+        <% }) %>
+    </ul>
+    <h2>Delete Your Account</h2>
+    <ul>
+        <% application.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/delete">Delete Your Account</a></li>
+        <% }) %>
+    </ul>
 </body>
 </html>
