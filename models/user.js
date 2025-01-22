@@ -33,11 +33,12 @@ required: ["student","employee","unemployed","self-employed","retired","other"]
 },
     applicationDate:
 {type: Date,
-required: true
+required: true,
+default: Date.now
 },
     applicationStatus:
 {type: String,
-required: ["pending","approved","rejected"]
+enum: ["pending","approved","rejected"]
 },
  
 })
