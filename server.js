@@ -15,7 +15,7 @@ const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const bankController = require('./controllers/bankApp.js')
-//controllers
+
 
 
 
@@ -51,7 +51,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // =======================
 app.get('/', (req, res) => {
   if(req.session.user){
-    res.redirect('/users/:userId/bank-accounts')
+    res.redirect(`/users/${req.session.user._id}/bank-accounts`)
   }else{
     res.render('index.ejs')
   }
@@ -59,8 +59,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController)
 app.use(isSignedIn)
-app.use('/bank', bankController)
-
+app.use('/users/:userId/bank-accounts', bankController)
 
 
 

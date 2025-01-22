@@ -46,6 +46,7 @@ router.post('/sign-in', async (req,res)=>{
         const userInDatabase = await User.findOne({email: req.body.email})
         if(!userInDatabase){
             res.send('Failed to login. Please try again')
+            return
         }
 
         const validPassword = bcrypt.compareSync(
