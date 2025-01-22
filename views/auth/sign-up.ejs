@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <form action="/auth/sign-up" method="post">
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" placeholder="First Name" id="firstName" required placeholder="First Name">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" placeholder="Last Name" id="lastName" required placeholder="Last Name">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" id="email" required placeholder="example@gmail.com">
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="text" name="confirmPassword" id="confirmPassword">
+        <label for="age">Age</label>
+        <input type="number" name="age" placeholder="Age" id="age" required placeholder="Age" min="18" max="100">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" placeholder="Phone" id="phone" required placeholder="000973-0000000">
+        <label for="job">Job</label>
+        <select name="job" id="job" required>
+            <option value="student">Student</option>
+            <option value="employee">Employee</option>
+            <option value="unemployed">Unemployed</option>
+            <option value="self-employed">Self-Employed</option>
+            <option value="retired">Retired</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="address">Address</label>
+        <input type="text" name="address" placeholder="Address" id="address" required placeholder="Address">
+        <label for="applicationStatus">Application Status</label>
+        <select name="applicationStatus" id="applicationStatus" required>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+        </select>
+        <label for="applicationDate">Application Date</label>
+        <input type="date" name="applicationDate" placeholder="Application Date" id="applicationDate" required placeholder="Application Date">
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

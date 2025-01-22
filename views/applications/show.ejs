@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show All Account</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>show All Account</h1>
+    <ul>
+        <% applications.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>"><%= application.name %></a></li>
+        <% }) %>
+    </ul>
+    <% if (applications.postingLink) { %>
+        <li><a href="<%= applications.postingLink %>">Posting Link</a></li>
+    <% } %>
+
+    <form action="/applications/<%= application._id %>/delete" method="POST">
+        <button type="submit">Delete Account</button>
+    </form>
+
+    <a href="/applications/<%= application._id %>/edit">
+        Edit Account
+    </a>
+
+</body>
+</html>
