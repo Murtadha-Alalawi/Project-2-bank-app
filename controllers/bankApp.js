@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
    try {
     const currentUser = await User.findById(req.session.user._id)
 
+
     res.render('index.ejs',{application:currentUser.applications})
    } catch (error) {
     res.render('error.ejs')
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
 
 //create new account
 router.get('/new', async (req,res)=>{
-    res.render('application/new.ejs')
+    res.render('applications/new.ejs')
 })
 
 //save new account to database
