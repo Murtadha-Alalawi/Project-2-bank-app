@@ -6,10 +6,31 @@
     <title>Applications</title>
 </head>
 <body>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Applications</h1>
+    <a href="/applications/new">Add New card</a>
+    <h2>Your Account</h2>
     <ul>
         <% applications.forEach(application => { %>
             <li><a href="/applications/<%= application._id %>"><%= application.name %></a></li>
+        <% }) %>
+    </ul>
+    <h2>Your Dashboard</h2>
+    <ul>
+        <% applications.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/show">Dashboard</a></li>
+        <% }) %>
+    </ul>
+    <h2>Edit Your Information</h2>
+    <ul>
+        <% applications.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/edit">Edit Your Information</a></li>
+        <% }) %>
+    </ul>
+    <h2>Delete Your Account</h2>
+    <ul>
+        <% applications.forEach(application => { %>
+            <li><a href="/applications/<%= application._id %>/delete">Delete Your Account</a></li>
         <% }) %>
     </ul>
 
