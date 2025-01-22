@@ -30,7 +30,7 @@ router.post('/', async (req,res)=>{
 
         await currentUser.save()
 
-        res.redirect(`/users/${currentUser._id}/applications`)
+        res.redirect(`/users/${currentUser._id}/bank-accounts`)
 
         
 
