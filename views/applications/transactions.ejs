@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Transactions</h1>
+    <ul>
+        <% transactions.forEach(transaction => { %>
+            <li><%= transaction.type %> - <%= transaction.amount %> - <%= transaction.date %></li>
+        <% }) %>
+    </ul>
+    <a href="/applications/<%= application._id %>/deposit">Deposit</a>
+    <a href="/applications/<%= application._id %>/withdraw">Withdraw</a>
+    <a href="/applications/<%= application._id %>/transfer">Transfer</a>
+    <a href="/applications/<%= application._id %>/balance">Balance</a>
+</body>
+</html>
