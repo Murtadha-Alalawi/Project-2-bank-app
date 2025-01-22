@@ -16,14 +16,7 @@ const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const bankController = require('./controllers/bankApp.js')
 //controllers
-const applicationController = require('./controllers/application.js')
-const transactionController = require('./controllers/transaction.js')
-const userController = require('./controllers/user.js')
-const balanceController = require('./controllers/balance.js')
-const depositController = require('./controllers/deposit.js')
-const withdrawController = require('./controllers/withdraw.js')
-const transferController = require('./controllers/transfer.js')
-const transactionsController = require('./controllers/transactions.js')
+
 
 
 
@@ -66,15 +59,9 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController)
 app.use(isSignedIn)
-app.use('/applications', applicationController)
-app.use('/transactions', transactionController)
-app.use('/users', userController)
-app.use('/balance', balanceController)
-app.use('/deposit', depositController)
-app.use('/withdraw', withdrawController)
-app.use('/transfer', transferController)
-app.use('/transactions', transactionsController)
-app.use("/users/:userId/bank-accounts",bankController)
+app.use('/bank', bankController)
+
+
 
 
 
