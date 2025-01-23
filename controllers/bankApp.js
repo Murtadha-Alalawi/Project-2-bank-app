@@ -8,10 +8,9 @@ router.get('/', async (req, res) => {
    try {
     const currentUser = await User.findById(req.session.user._id)
 
-
     res.render('index.ejs',{application:currentUser.applications})
    } catch (error) {
-    res.render('error.ejs')
+    res.render('applications/error.ejs')
    }
 })
 
@@ -36,21 +35,21 @@ router.post('/', async (req,res)=>{
 
     } catch (error) {
         console.log(error)
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
 //show account
-router.get('/applicationId', async (req,res)=>{
+router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
-        const currentUser = await User.findById(req.session.user._id)
+        const currentUser = await User.findById(req.session.userId)
 
-        const application = currentUser.applications.id(req.params.user._id)
+        const application = currentUser.applications.id(req.params.applicationId)
 
         res.render('applications/show.ejs',{application:application})
     } catch (error) {
        
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
@@ -65,7 +64,7 @@ router.delete('/:applicationId', async (req,res)=>{
 
         res.redirect(`/users/${currentUser._id}/applications`)
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
@@ -78,7 +77,7 @@ router.get('/:applicationdId/edit', async (req,res)=>{
             application:application
         })
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
@@ -95,7 +94,7 @@ router.put('/:applicationId', async (req,res)=>{
 
 //error page
 router.get('/error', (req,res)=>{
-    res.render('error.ejs')
+    res.render('applications/error.ejs')
 })
 
 //show balance
@@ -114,7 +113,7 @@ router.post('/:applicationId/balance', async (req,res)=>{
         await currentUser.save()
         res.redirect(`/applications/${application._id}/balance`)
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
@@ -133,7 +132,7 @@ router.post('/:applicationId/deposit', async (req,res)=>{
         await currentUser.save()
         res.redirect(`/applications/${application._id}/deposit`)
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
 
