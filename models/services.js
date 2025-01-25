@@ -73,4 +73,9 @@ const transactionSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Transaction', transactionSchema)
+module.exports = {Transaction: mongoose.model('Transaction', transactionSchema),
+    Transfer: mongoose.model('Transfer' , transferSchema ),
+    Withdraw: mongoose.model('Withdraw', withdrawSchema),
+    Deposit: mongoose.model('Deposit', depositSchema),
+    Balance: mongoose.model('Balance', balanceSchema),
+}
