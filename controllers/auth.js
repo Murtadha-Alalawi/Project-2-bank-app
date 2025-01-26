@@ -13,7 +13,7 @@ router.get('/sign-in', (req,res)=>{
 })
 
 router.get('/sign-out', (req,res)=>{
-    res.session.destroy();
+    req.session.destroy();
     res.redirect('/')
 });
 
@@ -71,4 +71,12 @@ router.post('/sign-in', async (req,res)=>{
     }
 });
 
+router.post('/sign-out', (req,res)=>{
+   if(req.session.user){
+    req.session.destroy();
+    res.redirect('/auth/sign-in')
+   }else{
+    res.redirect('/auth/sign-out')
+   }
+})
 module.exports = router;

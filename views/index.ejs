@@ -6,12 +6,19 @@
     <title>Applications</title>
 </head>
 <body>
-    <h1>GA Bank App</h1>
-    <h2>Welcome <%= user.firstName %> to GA Bank App</h2>
+    <h1>Applications</h1>
+    <a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a>
+    <h2>Your Accounts</h2>
     <ul>
+
+        <% application.forEach(application => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>"><%= application.type %></a></li>
+        <% }) %>
+
         <li><a href="/users/<%=user._id%>/bank-accounts/show/<%= application._id%>">View your Account</a></li>
         <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a></li>
+
     </ul>
-    
+    <a href="/users/<%= user._id %>/bank-accounts/new">Add New card</a>
 </body>
 </html>
