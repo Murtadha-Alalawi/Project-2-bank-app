@@ -19,7 +19,9 @@
     </ul>
     <h2>Delete Your Account</h2>
     <ul> 
-        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/delete">Delete Your Account</a></li>
+        <form action="/users/<%= user._id %>/bank-accounts/<%= application._id %>?_method=DELETE" method="POST">
+            <button>Delete Account</button>
+        </form>
     </ul>
 </body>
 </html> 

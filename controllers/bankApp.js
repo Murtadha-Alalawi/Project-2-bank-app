@@ -72,15 +72,17 @@ router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>
 })
 
 //delete account
-router.delete('/:applicationId', async (req,res)=>{
+router.delete("/:applicationId", async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
 
         currentUser.applications.id(req.params.applicationId).deleteOne()
 
+        console.log(currentUser.applications.id(req.params.applicationId))
+
         await currentUser.save()
 
-        res.redirect(`/users/${currentUser._id}/applications`)
+        res.redirect(`/users/${currentUser._id}/bank-accounts`)
     } catch (error) {
         res.render('applications/error.ejs')
 
@@ -89,14 +91,12 @@ router.delete('/:applicationId', async (req,res)=>{
 
 //edit account
 
-router.get('/:applicationId/edit', async (req,res)=>{
-    res.render('applications/edit.ejs')
-})
 
-router.get('/:applicationdId/edit', async (req,res)=>{
+
+router.get('/:applicationId/edit', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
-        const application = currentUser.applications.id(req.params.applicationdId)
+        const application = currentUser.applications.id(req.params.applicationId)
         res.render('applications/edit.ejs', {
             application:application
         })
@@ -106,13 +106,15 @@ router.get('/:applicationdId/edit', async (req,res)=>{
 
 })
 
-router.put('/:applicationId', async (req,res)=>{
+router.put('/', async (req,res)=>{
 
     const currentUser = await User.findById(req.session.user._id)
 
     const application = currentUser.applications.id(req.params.applicationId)
 
     application.set(req.body)
+
+    await currentUser.save()
 
     res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
 })

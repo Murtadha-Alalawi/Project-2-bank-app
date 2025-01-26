@@ -11,6 +11,7 @@
     <h2>Your Accounts</h2>
     <ul>
 
+
         <% application.forEach(application => { %>
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/show">Dashboard</a></li>
         <% }) %>
