@@ -1,5 +1,6 @@
 const { application } = require('express')
 const mongoose = require('mongoose')
+
 const applicationSchema = new mongoose.Schema({
    firstName:
     {type: String,
@@ -36,10 +37,10 @@ required: ["student","employee","unemployed","self-employed","retired","other"]
 required: true,
 default: Date.now
 },
-    applicationStatus:
-{type: String,
-enum: ["pending","approved","rejected"]
-},
+type: {
+    type: String,
+    required: ["Debit","Credit","Visa","Mastercard"]
+}
  
 })
 
