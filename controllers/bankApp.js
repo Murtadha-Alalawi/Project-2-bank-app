@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user')
+const Card = require('../models/card')
 
 
-//show all accounts
+//show all cards 
 router.get('/', async (req, res) => {
    try {
     const currentUser = await User.findById(req.session.user._id)
@@ -14,12 +15,12 @@ router.get('/', async (req, res) => {
    }
 })
 
-//create new account
+//create new card
 router.get('/new', async (req,res)=>{
     res.render('applications/new.ejs')
 })
 
-//save new account to database
+//save new card to database
 router.post('/', async (req,res)=>{
     try {
         
@@ -39,7 +40,19 @@ router.post('/', async (req,res)=>{
     }
 })
 
-// show account
+router.post('/cards', async (req,res)=>{
+    try {
+        console.log(req.body)
+        await Card.create(req.body)
+        res.redirect(`/users/${req.session.user._id}/bank-accounts`)
+    } catch (error) {
+        console.log(error)
+        res.render('applications/error.ejs')
+    }
+})
+
+
+// show card
 router.get('/:applicationId/show', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
@@ -57,7 +70,7 @@ router.get('/:applicationId/show', async (req,res)=>{
     }
 })
 
-//show account
+//show card
 router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.userId)
@@ -71,7 +84,7 @@ router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>
     }
 })
 
-//delete account
+//delete card
 router.delete('/:applicationId', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
@@ -87,7 +100,7 @@ router.delete('/:applicationId', async (req,res)=>{
     }
 })
 
-//edit account
+//edit card
 
 router.get('/:applicationId/edit', async (req,res)=>{
     res.render('applications/edit.ejs')
@@ -116,6 +129,9 @@ router.put('/:applicationId', async (req,res)=>{
 
     res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
 })
+
+
+
 
 
 
