@@ -12,14 +12,14 @@
     <p>Your account number is <%= application.accountNumber %></p>
     <p>Your balance is <%= application.balance %></p>
     <p>Your status is <%= application.status %></p>
-    <p>Your application date is <%= application.createdAt %></p>
+    <p>Your application date is <%= application.createdAt %></p> 
     <h2>Edit Your Information</h2>
     <ul>
-        <li><a href="/applications/<%= application._id %>/edit">Edit Your Information</a></li>
+        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/edit">Update Your Information</a></li>
     </ul>
     <h2>Delete Your Account</h2>
-    <ul>
-        <li><a href="/applications/<%= application._id %>/delete">Delete Your Account</a></li>
+    <ul> 
+        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/delete">Delete Your Account</a></li>
     </ul>
 </body>
 </html> 
