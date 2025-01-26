@@ -10,9 +10,14 @@
     <h1>Applications</h1>
     <h2>Your Accounts</h2>
     <ul>
+
         <% application.forEach(application => { %>
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/show">Dashboard</a></li>
         <% }) %>
+
+        <li><a href="/users/<%=user._id%>/bank-accounts/show/<%= application._id%>">View your Account</a></li>
+        <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a></li>
+
     </ul>
     
 </body>
