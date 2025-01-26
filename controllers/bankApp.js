@@ -53,8 +53,9 @@ router.get('/:applicationId/show', async (req,res)=>{
         res.render('applications/show.ejs', { application })
     } catch (error) {
         console.log(error)
-        res.render('error.ejs')
-=======
+        res.render('error.ejs')}
+    })
+//=================================================
 //show account
 router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
@@ -89,7 +90,7 @@ router.delete('/:applicationId', async (req,res)=>{
 
 router.get('/:applicationId/edit', async (req,res)=>{
     res.render('applications/edit.ejs')
-=======
+//=======================
 router.get('/:applicationdId/edit', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
@@ -101,11 +102,11 @@ router.get('/:applicationdId/edit', async (req,res)=>{
         res.render('applications/error.ejs')
     }
 
-})
+})})
 
 router.put('/:applicationId', async (req,res)=>{
 
-=======
+//==================================
     const currentUser = await User.findById(req.session.user._id)
 
     const application = currentUser.applications.id(req.params.applicationId)
@@ -140,10 +141,8 @@ router.post('/:applicationId/balance', async (req,res)=>{
     } catch (error) {
         console.log(error)
         res.render('error.ejs')
-=======
+//==============================
         res.redirect(`/applications/${application._id}/balance`)
-    } catch (error) {
-        res.render('applications/error.ejs')
     }
 })
 
