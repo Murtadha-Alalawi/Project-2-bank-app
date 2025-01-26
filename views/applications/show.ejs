@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show All Account</title>
+    <title>dashboard</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>show All Account</h1>
+    <h1>Welcome to your dashboard</h1>
+    <h2>welcome to your account <%= application.firstName %></h2>
+    <p>Your account number is <%= application.accountNumber %></p>
+    <p>Your balance is <%= application.balance %></p>
+    <p>Your status is <%= application.status %></p>
+    <p>Your application date is <%= application.createdAt %></p>
+    <h2>Edit Your Information</h2>
     <ul>
-        <% applications.forEach(application => { %>
-            <li><a href="/applications/<%= application._id %>"><%= application.name %></a></li>
-        <% }) %>
+        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/edit">Update Your Information</a></li>
     </ul>
-    <% if (applications.postingLink) { %>
-        <li><a href="<%= applications.postingLink %>">Posting Link</a></li>
-    <% } %>
-
-    <form action="/applications/<%= application._id %>/delete" method="POST">
-        <button type="submit">Delete Account</button>
-    </form>
-
-    <a href="/applications/<%= application._id %>/edit">
-        Edit Account
-    </a>
-
+    <h2>Delete Your Account</h2>
+    <ul>
+        <form action="/users/<%= user._id %>/bank-accounts/<%= application._id %>?_method=DELETE" method="POST">
+            <button>Delete Account</button>
+        </form>
+    </ul>
 </body>
 </html>

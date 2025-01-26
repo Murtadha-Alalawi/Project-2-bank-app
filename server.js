@@ -70,7 +70,6 @@ app.use('/users/:userId/bank-accounts', bankController)
 
 
 
-
 // =======================
 // 5. LISTENING ON PORT 3000
 // =======================

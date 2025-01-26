@@ -1,22 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const dashboardSchema = new mongoose.Schema({
-    balance: {
-        type: Number,
-        default: 0
+const accountSchema = new mongoose.Schema({
+    type: {
+        type: String,
+        required: ['Checking', 'Savings']
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+    name: {
+        type: String,
         required: true
-    },
-    transactions: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Transaction',
-        default: []
-    }
-});
+    } 
+})
 
-const Dashboard = mongoose.model('Dashboard', dashboardSchema);
-
-module.exports = Dashboard
+module.exports = mongoose.model('Account', accountSchema)
