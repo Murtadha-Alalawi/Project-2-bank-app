@@ -20,15 +20,6 @@
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= application.accountNumber %></a></li>
         <% }) } %>
     </ul>
-    <h2>Update Your Information</h2>
-    <ul>
-        <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/edit">Update Your Account</a></li>
-    </ul>
-    <h2>Delete Your Account and Cards</h2>
-    <ul>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=DELETE" method="POST">
-            <button>Delete Account</button>
-        </form>
-    </ul>
+ 
 </body>
 </html>
