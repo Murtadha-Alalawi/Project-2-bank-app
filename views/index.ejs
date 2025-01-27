@@ -10,11 +10,14 @@
     <h1>Welcome to GA Bank</h1>
     <h2>this is sample bank app</h2>
     <h3>Your Cards</h3> 
+    <% cards.forEach(card => { %>
+        <li><%= card.cardType %></li>
+    <% }) %>
     <ul>
-        <% application.forEach(application => { %>
+        <% if(application){ application.forEach(application => { %>
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/show">Dashboard</a></li>
-        <% }) %>
-        <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New card</a></li>
+        <% }) } %>
+        <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New Account</a></li>
     </ul>
 </body>
 </html>
