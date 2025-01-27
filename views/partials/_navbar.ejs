@@ -1,9 +1,14 @@
 <nav>
     <ul>
+        <% if(user){ %>
         <li><a href="/">Home</a></li>
         <li><a href="/users/<%= user._id %>/bank-accounts">Dashboard</a></li>
         <li><a href="/auth/sign-out">Sign out</a></li>
-        <li><a href="/auth/sign-in">Sign in</a></li>
         <li><a href="/users/<%= user._id %>/bank-accounts/new">Add New Account or Card</a></li>
+        <% } else { %>
+        <li><a href="/auth/sign-up">Sign up</a></li>
+        <li><a href="/auth/sign-in">Sign in</a></li>
+
+        <% } %>
     </ul>
 </nav>

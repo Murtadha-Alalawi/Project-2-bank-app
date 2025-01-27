@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Account = require('../models/account');
 const User = require('../models/user')
-const Card = require('../models/card')
+const Card = require('../models/card');
 
 
-//show all Accounts 
+//show 
 router.get('/', async (req, res) => {
    try {
     const cards = await Card.find({user:req.session.user._id})
@@ -14,6 +15,27 @@ router.get('/', async (req, res) => {
    } catch (error) {
     res.render('applications/error.ejs')
    }
+})
+
+// show card
+router.get('/show', async (req,res)=>{
+    console.log("In SHOW ROUTE")
+    try {
+        const currentUser = await User.findById(req.session.user._id)
+        const cards = await Card.find({user:req.session.user._id})
+        const account = await Account.find({user:req.session.user._id})
+        console.log(currentUser)
+        // const application = currentUser.applications.id(req.params.applicationId)
+        // console.log(application)
+        // if (!application) {
+        //     return res.render('error.ejs')
+        // }
+        
+        res.render('applications/show.ejs', { account, cards })
+    } catch (error) {
+        console.log(error)
+        res.render('error.ejs')
+    }
 })
 //create new cards 
 router.post('/cards', async (req,res)=>{
@@ -28,23 +50,7 @@ router.post('/cards', async (req,res)=>{
     }
 })
 
-// show card
-router.get('/:applicationId/show', async (req,res)=>{
-    try {
-        const currentUser = await User.findById(req.session.user._id)
-        console.log(currentUser)
-        const application = currentUser.applications.id(req.params.applicationId)
-        console.log(application)
-        if (!application) {
-            return res.render('error.ejs')
-        }
-        
-        res.render('applications/show.ejs', { application })
-    } catch (error) {
-        console.log(error)
-        res.render('error.ejs')
-    }
-})
+
 
 //show card
 router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{

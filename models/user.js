@@ -25,21 +25,21 @@ const applicationSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-        required: true
+        // required: true
     },
     age: {
         type: Number,
-        required: true,
+        // required: true,
         min: 18,
         max: 100
     },
     gender: {
         type: String,
-        required: ['male', 'female']
+        // required: ['male', 'female']
     },
     job: {
         type: String,
-        required: ['student', 'employee', 'unemployed', 'self-employed', 'retired', 'other']
+        enum: ['student', 'employee', 'unemployed', 'self-employed', 'retired', 'other']
     },
     address: {
         type: String,
@@ -67,6 +67,7 @@ const userSchema = new mongoose.Schema({
         ref: 'Card'
     }
     ],
+    applications:applicationSchema
 })
 
 module.exports = mongoose.model('User', userSchema)
