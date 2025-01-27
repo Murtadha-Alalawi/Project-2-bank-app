@@ -16,17 +16,17 @@
     </ul>
     <h2>Your Accounts</h2>
     <ul>
-        <% if(applications){ applications.forEach(application => { %>
-            <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/show"><%= application.accountNumber %></a></li>
+        <% if(account){ account.forEach(account => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/show"><%= application.accountNumber %></a></li>
         <% }) } %>
     </ul>
     <h2>Update Your Information</h2>
     <ul>
-        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/edit">Update Your Information</a></li>
+        <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/edit">Update Your Account</a></li>
     </ul>
     <h2>Delete Your Account and Cards</h2>
     <ul>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= application._id %>?_method=DELETE" method="POST">
+        <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=DELETE" method="POST">
             <button>Delete Account</button>
         </form>
     </ul>

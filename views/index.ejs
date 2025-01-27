@@ -8,8 +8,10 @@
 <body>
     <%- include('./partials/_navbar.ejs') %>
     <h1>Welcome to GA Bank</h1>
-    <h2>this is sample bank app</h2>  
+    <h2>this is sample bank app</h2>
+    <% if(user){ %>
     <a href="/users/<%= user._id %>/bank-accounts/show">Dashboard</a>
+    <% } %>
  
 </body>
 </html>
