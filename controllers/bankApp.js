@@ -4,22 +4,45 @@ const User = require('../models/user')
 const Card = require('../models/card')
 
 
-//show all Accounts 
+//show all cards 
 router.get('/', async (req, res) => {
    try {
-    const cards = await Card.find({user:req.session.user._id})
     const currentUser = await User.findById(req.session.user._id)
-    console.log(currentUser)
-    res.render('index.ejs',{application:currentUser.applications, cards:cards})
+
+    res.render('index.ejs',{application:currentUser.applications})
    } catch (error) {
     res.render('applications/error.ejs')
    }
 })
-//create new cards 
+
+//create new card
+router.get('/new', async (req,res)=>{
+    res.render('applications/new.ejs')
+})
+
+//save new card to database
+router.post('/', async (req,res)=>{
+    try {
+        
+        const currentUser = await User.findById(req.session.user._id)
+
+        currentUser.applications.push(req.body)
+
+        await currentUser.save()
+
+        res.redirect(`/users/${currentUser._id}/bank-accounts`)
+
+        
+
+    } catch (error) {
+        console.log(error)
+        res.render('applications/error.ejs')
+    }
+})
+
 router.post('/cards', async (req,res)=>{
     try {
         console.log(req.body)
-        req.body.user = req.session.user._id
         await Card.create(req.body)
         res.redirect(`/users/${req.session.user._id}/bank-accounts`)
     } catch (error) {
@@ -27,6 +50,7 @@ router.post('/cards', async (req,res)=>{
         res.render('applications/error.ejs')
     }
 })
+
 
 // show card
 router.get('/:applicationId/show', async (req,res)=>{
@@ -60,29 +84,7 @@ router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>
     }
 })
 
-// Create new account route
-router.post('/accounts', async (req, res) => {
-    try {
-        const currentUser = await User.findById(req.session.user._id)
-        currentUser.applications.push(req.body)
-        await currentUser.save()
-        res.redirect(`/users/${currentUser._id}/bank-accounts`)
-    } catch (error) {
-        console.log(error)
-        res.render('applications/error.ejs')
-    }
-})
-
-// Show form for new account
-router.get('/new', async (req, res) => {
-    try {
-        res.render('applications/new.ejs')
-    } catch (error) {
-        res.render('applications/error.ejs')
-    }
-})
-
-//delete card and account
+//delete card
 router.delete('/:applicationId', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
@@ -103,7 +105,7 @@ router.delete('/:applicationId', async (req,res)=>{
 router.get('/:applicationId/edit', async (req,res)=>{
     res.render('applications/edit.ejs')
 })
-//update account
+
 router.get('/:applicationdId/edit', async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.user._id)
@@ -116,7 +118,7 @@ router.get('/:applicationdId/edit', async (req,res)=>{
     }
 
 })
-//update card 
+
 router.put('/:applicationId', async (req,res)=>{
 
     const currentUser = await User.findById(req.session.user._id)
@@ -127,6 +129,7 @@ router.put('/:applicationId', async (req,res)=>{
 
     res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
 })
+
 
 
 
