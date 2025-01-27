@@ -52,14 +52,28 @@ router.post('/cards', async (req,res)=>{
 
 
 
-//show card
+//show per card
+router.get("/cards/:cardId", async (req,res)=>{
+    try {
+        const currentUser = await User.findById(req.session.userId)
+
+        const application = currentUser.card.id(req.params.cardId)
+
+        res.render('applications/card.ejs',{application:application})
+    } catch (error) {
+       
+        res.render('applications/error.ejs')
+    }
+})
+
+//show per account
 router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.userId)
 
         const application = currentUser.applications.id(req.params.applicationId)
 
-        res.render('applications/show.ejs',{application:application})
+        res.render('applications/card.ejs',{application:application})
     } catch (error) {
        
         res.render('applications/error.ejs')

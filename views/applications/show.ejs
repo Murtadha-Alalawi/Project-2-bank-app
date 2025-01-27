@@ -11,13 +11,13 @@
     <h2>Your Cards</h2>
     <ul>
         <% if(cards){ cards.forEach(card => { %>
-            <li><a href="/users/<%= user._id %>/bank-accounts/<%= card._id %>/show"><%= card.cardType %></a></li>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= card._id %>/card"><%= card.cardType %></a></li>
         <% }) } %>
     </ul>
     <h2>Your Accounts</h2>
     <ul>
         <% if(account){ account.forEach(account => { %>
-            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/show"><%= application.accountNumber %></a></li>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= application.accountNumber %></a></li>
         <% }) } %>
     </ul>
     <h2>Update Your Information</h2>
