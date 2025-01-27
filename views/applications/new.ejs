@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('../partials/_navbar.ejs') %>
     <title>Open new Account</title>
+    <body>
+        <h1>Open New Account</h1>
+    <form action="/users/<%=user._id%>/bank-accounts" method="POST">
+        <label for="type">Account Type</label>
+        <select name="type" id="type">
+            <option value="Checking">Checking</option>
+            <option value="Savings">Savings</option>
+        </select>
+        <label for="name">Account Name</label>
+        <input type="text" name="firstName" id="name">
+        <button type="submit">Add new account</button>
+    </form>
+    <br>
+    <h2>Add New Card</h2>
     <form action="/users/<%=user._id%>/bank-accounts/cards" method="POST">
         <label for="cardType">Card Type</label>
         <select name="cardType" id="cardType">
@@ -21,15 +35,7 @@
     <input type="text" name="lastName" id="lastName">
     <button type="submit">Add new card</button>
     </form>
-    <form action="/users/<%=user._id%>/bank-accounts" method="POST">
-        <label for="type">Account Type</label>
-        <select name="type" id="type">
-            <option value="Checking">Checking</option>
-            <option value="Savings">Savings</option>
-        </select>
-        <label for="name">Account Name</label>
-        <input type="text" name="name" id="name">
-        <button type="submit">Add new account</button>
-    </form>
+   
+   
 </body>
 </html>

@@ -55,7 +55,18 @@ const userSchema = new mongoose.Schema({
    password:
     {type: String,
     required: true},
-    applications: [applicationSchema]
+    account: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account'
+    }
+    ],
+    card: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Card'
+    }
+    ],
 })
 
 module.exports = mongoose.model('User', userSchema)
