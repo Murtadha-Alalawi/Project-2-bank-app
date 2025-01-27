@@ -17,18 +17,12 @@
         <label for="address">Address</label>
         <input type="text" name="address" id="address" value="<%= application.address %>">
         <button type="submit">Save</button>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=DELETE" method="POST">
+    </form>
+    <h2>Delete Your Account</h2>
+    <ul>
+        <form action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE" method="POST">
             <button>Delete Account</button>
         </form>
-    </form>
-    <h2>Update Your Card</h2>
-    <form action="/users/<%= user._id %>/bank-accounts/<%= card._id %>/edit" method="POST">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" name="phoneNumber" id="phoneNumber" value="<%= card.phoneNumber %>">
-        <button>Update Card</button>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= card._id %>?_method=DELETE" method="POST">
-            <button>Delete Card</button>
-        </form>
-    </form>
+    </ul>
 </body>
 </html>

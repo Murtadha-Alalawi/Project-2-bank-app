@@ -9,7 +9,13 @@
     <h1>Welcome <%= account.firstName %></h1>
 
     <p>This is your <%= card.cardType %> card</p>
-    <p> <%= card.firstName %> <%= card.lastName %> card</p>
-    
+    <p>Name: <%= card.firstName %> <%= card.lastName %></p>
+    <p>Phone Number: <%= card.phoneNumber %></p>
+    <h2>Delete Your Card</h2>
+    <ul>
+        <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=DELETE" method="POST">
+            <button>Delete Your Card</button>
+        </form>
+    </ul>
 </body>
 </html>
