@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const cardSchema = new mongoose.Schema({
     cardType: {
         type: String,
@@ -16,7 +17,11 @@ const cardSchema = new mongoose.Schema({
     lastName: {
         type: String,
         required: true
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }   
 })
 
 module.exports = mongoose.model('Card', cardSchema)
