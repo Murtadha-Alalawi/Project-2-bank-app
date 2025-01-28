@@ -17,7 +17,7 @@
     <h2>Your Accounts</h2>
     <ul>
         <% if(account){ account.forEach(account => { %>
-            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= application.accountNumber %></a></li>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= account.name %></a></li>
         <% }) } %>
     </ul>
  

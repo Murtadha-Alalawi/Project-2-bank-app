@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing <%= application.title %></title>
+    <title>Editing <%= account.name %>'s account</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Welcome <%= user.firstName %></h1>
     <h2>Update Your Account</h2>
-    <form action="/users/<%= user._id %>/applications/<%= application._id %>" method="POST">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<%= application.name %>">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" name="phoneNumber" id="phoneNumber" value="<%= application.phoneNumber %>">
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address" value="<%= application.address %>">
+    <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=PUT" method="POST">
+        <label for="name">New account name</label>
+        <input type="text" name="name" id="name" value="<%= account.name %>">
+        <label for="phoneNumber">New account phone number</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" value="<%= account.phoneNumber %>">
+        <label for="address">New account address</label>
+        <input type="text" name="address" id="address" value="<%= account.address %>">
         <button type="submit">Save</button>
     </form>
-    <h2>Delete Your Account</h2>
-    <ul>
-        <form action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE" method="POST">
-            <button>Delete Account</button>
-        </form>
-    </ul>
 </body>
 </html>
