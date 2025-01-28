@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>show All Account</title>
+    <title>dashboard</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome to <%= application.name %> Account</h1>
-    <a href="/applications/<%= application._id %>/transactions">Transactions</a>
-    <a href="/applications/<%= application._id %>/edit">Edit Account</a>
-    <a href="/applications/<%= application._id %>/delete">Delete Account</a>
-    <a href="/applications/<%= application._id %>/deposit">Deposit</a>
-    <a href="/applications/<%= application._id %>/withdraw">Withdraw</a>
-    <a href="/applications/<%= application._id %>/transfer">Transfer</a>
-    <a href="/applications/<%= application._id %>/balance">Balance</a>
-
+    <h1>Welcome <%= user.firstName %></h1>
+    <h2>Your Cards</h2>
+    <ul>
+        <% if(cards){ cards.forEach(card => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= card._id %>/card"><%= card.cardType %></a></li>
+        <% }) } %>
+    </ul>
+    <h2>Your Accounts</h2>
+    <ul>
+        <% if(account){ account.forEach(account => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= account.name %></a></li>
+        <% }) } %>
+    </ul>
+ 
 </body>
 </html>

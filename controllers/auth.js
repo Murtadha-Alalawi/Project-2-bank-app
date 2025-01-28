@@ -13,7 +13,7 @@ router.get('/sign-in', (req,res)=>{
 })
 
 router.get('/sign-out', (req,res)=>{
-    res.session.destroy();
+    req.session.destroy();
     res.redirect('/')
 });
 
@@ -31,6 +31,19 @@ router.post('/sign-up', async (req,res)=>{
         const hashedPassword = bcrypt.hashSync(req.body.password, 10);
         req.body.password = hashedPassword;
 
+        const {firstName, lastName, email, password, confirmPassword, address, cardType} = req.body
+
+        const newApplication = {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            address,
+            cardType
+        }
+        req.body.applications = newApplication
+
         await User.create(req.body);
 
         res.redirect('/auth/sign-in')
@@ -45,17 +58,19 @@ router.post('/sign-in', async (req,res)=>{
         
         const userInDatabase = await User.findOne({email: req.body.email})
         if(!userInDatabase){
-            res.send('Failed to login. Please try again')
+            res.send('npt signed up')
             return
         }
 
+
+        console.log(userInDatabase)
         const validPassword = bcrypt.compareSync(
             req.body.password,
             userInDatabase.password
         );
 
         if(!validPassword){
-            return res.send('Failed to login. Please try again')
+            return res.send('Wrong password')
         };
 
         req.session.user = {
@@ -71,4 +86,12 @@ router.post('/sign-in', async (req,res)=>{
     }
 });
 
+router.post('/sign-out', (req,res)=>{
+   if(req.session.user){
+    req.session.destroy();
+    res.redirect('/auth/sign-in')
+   }else{
+    res.redirect('/auth/sign-out')
+   }
+})
 module.exports = router;

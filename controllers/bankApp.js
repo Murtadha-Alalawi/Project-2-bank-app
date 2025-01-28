@@ -1,176 +1,173 @@
 const express = require('express');
 const router = express.Router();
+const Account = require('../models/account');
 const User = require('../models/user')
+const Card = require('../models/card');
+const card = require('../models/card');
 
 
-//show all accounts
+//show 
 router.get('/', async (req, res) => {
    try {
+    const cards = await Card.find({user:req.session.user._id})
     const currentUser = await User.findById(req.session.user._id)
-
-
-    res.render('index.ejs',{application:currentUser.applications})
+    console.log(currentUser)
+    res.render('index.ejs',{application:currentUser.applications, cards:cards})
    } catch (error) {
-    res.render('error.ejs')
+    res.render('applications/error.ejs')
    }
 })
 
-//create new account
-router.get('/new', async (req,res)=>{
-    res.render('applications/new.ejs')
-})
-
-//save new account to database
-router.post('/', async (req,res)=>{
+// show card
+router.get('/show', async (req,res)=>{
+    console.log("In SHOW ROUTE")
     try {
-        
         const currentUser = await User.findById(req.session.user._id)
-
-        currentUser.applications.push(req.body)
-
-        await currentUser.save()
-
-        res.redirect(`/users/${currentUser._id}/bank-accounts`)
-
+        const cards = await Card.find({user:req.session.user._id})
+        const account = await Account.find({user:req.session.user._id})
+        console.log(currentUser)
+        // const application = currentUser.applications.id(req.params.applicationId)
+        // console.log(application)
+        if (!application) {
+            return res.render('error.ejs')
+        }
         
-
+        res.render('applications/show.ejs', { account, cards })
     } catch (error) {
+        console.log(error)
         res.render('error.ejs')
     }
 })
-
-//show account
-router.get('/applicationId', async (req,res)=>{
+//create new cards 
+router.post('/cards', async (req,res)=>{
     try {
-        const currentUser = await User.findById(req.session.user._id)
+        console.log(req.body)
+        req.body.user = req.session.user._id
+        await Card.create(req.body)
+        res.redirect(`/users/${req.session.user._id}/bank-accounts`)
+    } catch (error) {
+        console.log(error)
+        res.render('applications/error.ejs')
+    }
+})
 
-        const application = currentUser.applications.id(req.params.user._id)
 
-        res.render('applications/show.ejs',{application:application})
+
+//show per card
+router.get("/:cardId/card", async (req,res)=>{
+    try {
+        // const currentUser = await User.findById(req.session._id).populate('cards')
+
+        // console.log(currentUser)
+        const card = await Card.findById(req.params.cardId)
+        console.log("CARDS", card)
+        res.render('applications/card.ejs',{card:card})
     } catch (error) {
        
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
 })
+
+//show per account
+router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
+    try {
+        const currentUser = await User.findById(req.session.userId)
+
+        const application = currentUser.applications.id(req.params.applicationId)
+
+        res.render('applications/card.ejs',{application:application})
+    } catch (error) {
+        console.log(error)
+        res.render('applications/error.ejs')
+    }
+})
+
+// show per account
+router.get("/:accountId/account", async (req,res)=>{
+    try {
+        
+        const account = await Account.findById(req.params.accountId)
+        res.render('applications/account.ejs',{account:account})
+    } catch (error) {
+       
+        res.render('applications/error.ejs')
+    }
+})
+
+
+// Show form for new account
+router.get('/new', async (req, res) => {
+    try {
+        res.render('applications/new.ejs')
+    } catch (error) {
+        res.render('applications/error.ejs')
+    }
+})
+
+
+
+//delete card
+router.delete('/:cardId', async (req,res)=>{
+    try {
+        const card = await Card.findByIdAndDelete(req.params.cardId)
+        
+        res.redirect(`/users/${req.session.user._id}/bank-accounts`)
+    } catch (error) {
+        res.render('applications/error.ejs')
+
+    }
+})
+
 
 //delete account
-router.delete('/:applicationId', async (req,res)=>{
+router.delete('/account/:accountId', async (req,res)=>{
     try {
-        const currentUser = await User.findById(req.session.user._id)
+        console.log(req.params)
 
-        currentUser.applications.id(req.params.applicationId).deleteOne()
+        const account = await Account.findByIdAndDelete(req.params.accountId)
+        
+        
 
-        await currentUser.save()
-
-        res.redirect(`/users/${currentUser._id}/applications`)
+        res.redirect(`/users/${req.session.user._id}/bank-accounts`)
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
+
     }
 })
 
-//edit account
-router.get('/:applicationdId/edit', async (req,res)=>{
-    try {
-        const currentUser = await User.findById(req.session.user._id)
-        const application = currentUser.applications.id(req.params.applicationdId)
-        res.render('applications/edit.ejs', {
-            application:application
-        })
-    } catch (error) {
-        res.render('error.ejs')
-    }
-})
+
 
 //update account
-router.put('/:applicationId', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-
-    const application = currentUser.applications.id(req.params.applicationId)
-
-    application.set(req.body)
-
-    res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`)
-})
-
-//error page
-router.get('/error', (req,res)=>{
-    res.render('error.ejs')
-})
-
-//show balance
-router.get('/:applicationId/balance', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    res.render('applications/balance.ejs', {application:application})
-})
-
-//update balance
-router.post('/:applicationId/balance', async (req,res)=>{
+router.get('/:accountId/edit', async (req,res)=>{
     try {
-        const currentUser = await User.findById(req.session.user._id)
-        const application = currentUser.applications.id(req.params.applicationId)
-        application.balance = req.body.balance
-        await currentUser.save()
-        res.redirect(`/applications/${application._id}/balance`)
+        const account = await Account.findById(req.params.accountId)
+
+        res.render('applications/edit.ejs', {
+            account:account
+        })
     } catch (error) {
-        res.render('error.ejs')
+        res.render('applications/error.ejs')
     }
+
 })
 
-//deposit money
-router.get('/:applicationId/deposit', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    res.render('applications/deposit.ejs', {application:application})
+router.put('/:accountId', async (req,res)=>{
+
+    const account = await Account.findById(req.params.accountId)
+
+
+    console.log("checking req body", req.body)
+
+    account.set(req.body)
+    await account.save()
+
+
+    console.log("account", account)
+    res.redirect(`/users/${req.session.user._id}/bank-accounts`)
 })
 
-router.post('/:applicationId/deposit', async (req,res)=>{
-    try {   
-        const currentUser = await User.findById(req.session.user._id)
-        const application = currentUser.applications.id(req.params.applicationId)
-        application.balance = req.body.balance
-        await currentUser.save()
-        res.redirect(`/applications/${application._id}/deposit`)
-    } catch (error) {
-        res.render('error.ejs')
-    }
-})
 
-//withdraw money
-router.get('/:applicationId/withdraw', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    res.render('applications/withdraw.ejs', {application:application})
-})
 
-router.post('/:applicationId/withdraw', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    application.balance = req.body.balance
-    await currentUser.save()
-    res.redirect(`/applications/${application._id}/withdraw`)
-})
-
-//transfer money to another account
-router.get('/:applicationId/transfer', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    res.render('applications/transfer.ejs', {application:application})
-})
-
-router.post('/:applicationId/transfer', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    application.balance = req.body.balance
-    await currentUser.save()
-    res.redirect(`/applications/${application._id}/transfer`)
-})
-//view transactions
-router.get('/:applicationId/transactions', async (req,res)=>{
-    const currentUser = await User.findById(req.session.user._id)
-    const application = currentUser.applications.id(req.params.applicationId)
-    res.render('applications/transactions.ejs', {application:application})
-})
 
 
 

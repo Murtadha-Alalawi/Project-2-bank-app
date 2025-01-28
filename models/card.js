@@ -1,27 +1,27 @@
 const mongoose = require('mongoose')
 
 
-const accountSchema = new mongoose.Schema({
-    type: {
+const cardSchema = new mongoose.Schema({
+    cardType: {
         type: String,
-        required: ['Checking', 'Savings']
-    },
-    name: {
-        type: String,
-        required: true
+        required: ['Visa', 'Mastercard', 'Discover', 'American Express']
     },
     phoneNumber: {
         type: String,
         required: true
     },
-    address: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }   
 })
 
-module.exports = mongoose.model('Account', accountSchema)
+module.exports = mongoose.model('Card', cardSchema)

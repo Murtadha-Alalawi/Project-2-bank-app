@@ -16,6 +16,11 @@ const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const bankController = require('./controllers/bankApp.js')
 
+app.use(express.static("public"))
+
+// const accountController = require('./controllers/accountApp.js')
+
+
 
 
 
@@ -60,7 +65,6 @@ app.get('/', (req, res) => {
 app.use('/auth', authController)
 app.use(isSignedIn)
 app.use('/users/:userId/bank-accounts', bankController)
-
 
 
 
