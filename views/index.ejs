@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/index.css">
     <title>Applications</title>
 </head>
 <body>
+    <div class="navbar">
     <%- include('./partials/_navbar.ejs') %>
-    <h1>Welcome to GA Bank</h1>
-    <h2>this is sample bank app</h2>
+    </div>
+    <h1 class="title">Welcome to GA Bank</h1>
+    <h2 class="subtitle">this is sample bank app</h2>
+
+    
     <% if(user){ %>
-    <a href="/users/<%= user._id %>/bank-accounts/show">Dashboard</a>
+    <a class="dashboard-link" href="/users/<%= user._id %>/bank-accounts/show">Dashboard</a>
     <% } %>
+    
  
 </body>
 </html>

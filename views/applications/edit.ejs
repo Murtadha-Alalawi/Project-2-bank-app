@@ -14,14 +14,18 @@
     <h2 class="subtitle">Update Your Account</h2>
     <div class="edit-account-container">
     <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=PUT" method="POST">
-        <label for="name">New account name</label>
+        <label class="edit-account-label" for="name">New account name</label>
         <input type="text" name="name" id="name" value="<%= account.name %>">
-        <label for="phoneNumber">New account phone number</label>
+        <br>
+        <label class="edit-account-label" for="phoneNumber">New account phone number</label>
         <input type="text" name="phoneNumber" id="phoneNumber" value="<%= account.phoneNumber %>">
-        <label for="address">New account address</label>
+        <br>
+        <label class="edit-account-label" for="address">New account address</label>
         <input type="text" name="address" id="address" value="<%= account.address %>">
-        <button type="submit">Save edit</button>
-    </form>
+        <br>
     </div>
+        <button class="edit-account-button" type="submit">Save edit</button>
+    </form>
+   
 </body>
 </html>
