@@ -3,7 +3,6 @@ const router = express.Router();
 const Account = require('../models/account');
 const User = require('../models/user')
 const Card = require('../models/card');
-const card = require('../models/card');
 
 
 //show 
@@ -25,8 +24,12 @@ router.get('/show', async (req,res)=>{
         const currentUser = await User.findById(req.session.user._id)
         const cards = await Card.find({user:req.session.user._id})
         const account = await Account.find({user:req.session.user._id})
-       
-       
+        console.log(currentUser)
+        // const application = currentUser.applications.id(req.params.applicationId)
+        // console.log(application)
+        if (!application) {
+            return res.render('error.ejs')
+        }
         
         res.render('applications/show.ejs', { account, cards })
     } catch (error) {
@@ -49,29 +52,14 @@ router.post('/cards', async (req,res)=>{
 
 
 
-//show per card
-router.get("/:cardId/card", async (req,res)=>{
-    try {
-        // const currentUser = await User.findById(req.session._id).populate('cards')
-
-        // console.log(currentUser)
-        const card = await Card.findById(req.params.cardId)
-        console.log("CARDS", card)
-        res.render('applications/card.ejs',{card:card})
-    } catch (error) {
-       
-        res.render('applications/error.ejs')
-    }
-})
-
-//show per account
+//show card
 router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
         const currentUser = await User.findById(req.session.userId)
 
         const application = currentUser.applications.id(req.params.applicationId)
 
-        res.render('applications/card.ejs',{application:application})
+        res.render('applications/show.ejs',{application:application})
     } catch (error) {
        
         res.render('applications/error.ejs')
