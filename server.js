@@ -15,7 +15,12 @@ const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const bankController = require('./controllers/bankApp.js')
+
 app.use(express.static("public"))
+
+// const accountController = require('./controllers/accountApp.js')
+
+
 
 
 

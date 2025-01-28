@@ -4,7 +4,6 @@ const Account = require('../models/account');
 const User = require('../models/user')
 const Card = require('../models/card');
 const card = require('../models/card');
-const account = require('../models/account');
 
 
 //show 
@@ -26,8 +25,12 @@ router.get('/show', async (req,res)=>{
         const currentUser = await User.findById(req.session.user._id)
         const cards = await Card.find({user:req.session.user._id})
         const account = await Account.find({user:req.session.user._id})
-       
-       
+        console.log(currentUser)
+        // const application = currentUser.applications.id(req.params.applicationId)
+        // console.log(application)
+        if (!application) {
+            return res.render('error.ejs')
+        }
         
         res.render('applications/show.ejs', { account, cards })
     } catch (error) {
@@ -53,7 +56,9 @@ router.post('/cards', async (req,res)=>{
 //show per card
 router.get("/:cardId/card", async (req,res)=>{
     try {
-        
+        // const currentUser = await User.findById(req.session._id).populate('cards')
+
+        // console.log(currentUser)
         const card = await Card.findById(req.params.cardId)
         console.log("CARDS", card)
         res.render('applications/card.ejs',{card:card})
@@ -63,14 +68,14 @@ router.get("/:cardId/card", async (req,res)=>{
     }
 })
 
-
-// Create new account 
-router.post('/accounts', async (req,res)=>{
+//show per account
+router.get("/users/:userId/bank-accounts/show/:applicationId", async (req,res)=>{
     try {
-        console.log(req.body)
-        req.body.user = req.session.user._id
-        await Account.create(req.body)
-        res.redirect(`/users/${req.session.user._id}/bank-accounts`)
+        const currentUser = await User.findById(req.session.userId)
+
+        const application = currentUser.applications.id(req.params.applicationId)
+
+        res.render('applications/card.ejs',{application:application})
     } catch (error) {
         console.log(error)
         res.render('applications/error.ejs')
