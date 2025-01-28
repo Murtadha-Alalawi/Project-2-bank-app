@@ -7,21 +7,19 @@
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome to your dashboard</h1>
-    <h2>welcome to your account <%= application.firstName %></h2>
-    <p>Your account number is <%= application.accountNumber %></p>
-    <p>Your balance is <%= application.balance %></p>
-    <p>Your status is <%= application.status %></p>
-    <p>Your application date is <%= application.createdAt %></p>
-    <h2>Edit Your Information</h2>
+    <h1>Welcome <%= user.firstName %></h1>
+    <h2>Your Cards</h2>
     <ul>
-        <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/edit">Update Your Information</a></li>
+        <% if(cards){ cards.forEach(card => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= card._id %>/card"><%= card.cardType %></a></li>
+        <% }) } %>
     </ul>
-    <h2>Delete Your Account</h2>
+    <h2>Your Accounts</h2>
     <ul>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= application._id %>?_method=DELETE" method="POST">
-            <button>Delete Account</button>
-        </form>
+        <% if(account){ account.forEach(account => { %>
+            <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= account.name %></a></li>
+        <% }) } %>
     </ul>
+ 
 </body>
 </html>

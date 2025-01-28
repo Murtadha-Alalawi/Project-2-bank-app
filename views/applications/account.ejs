@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/accounts.css">
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Welcome <%= user.firstName %></h1>
+    <h2>This is your account</h2>
+    <p>Name: <%= account.name %> </p>
+    <p>Phone Number: <%= account.phoneNumber %></p>
+    <p>Address: <%= account.address %></p>
+    <h2>Update Your Account</h2>
+    <ul></ul>
+        <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/edit">Update Your Account</a></li>
+    </ul>
+    <h2>Delete Your Account</h2>
+    <ul>
+        <form action="/users/<%= user._id %>/bank-accounts/account/<%= account._id %>?_method=DELETE" method="POST">
+            <button>Delete Your Account</button>
+        </form>
+    </ul>
+</body>
+</html>

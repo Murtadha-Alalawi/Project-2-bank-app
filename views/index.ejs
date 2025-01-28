@@ -9,15 +9,9 @@
     <%- include('./partials/_navbar.ejs') %>
     <h1>Welcome to GA Bank</h1>
     <h2>this is sample bank app</h2>
-    <h3>Your Cards</h3> 
-    <% cards.forEach(card => { %>
-        <li><%= card.cardType %></li>
-    <% }) %>
-    <ul>
-        <% if(application){ application.forEach(application => { %>
-            <li><a href="/users/<%= user._id %>/bank-accounts/<%= application._id %>/show">Dashboard</a></li>
-        <% }) } %>
-        <li><a href="/users/<%=user._id%>/bank-accounts/new">Add New Account</a></li>
-    </ul>
+    <% if(user){ %>
+    <a href="/users/<%= user._id %>/bank-accounts/show">Dashboard</a>
+    <% } %>
+ 
 </body>
 </html>
