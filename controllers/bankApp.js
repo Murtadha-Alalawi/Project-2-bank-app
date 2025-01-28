@@ -22,6 +22,8 @@ router.get('/show', async (req,res)=>{
         const currentUser = await User.findById(req.session.user._id)
         const cards = await Card.find({user:req.session.user._id})
         const account = await Account.find({user:req.session.user._id})
+        
+        
         res.render('applications/show.ejs', { account, cards })
     } catch (error) {
         console.log(error)
@@ -52,9 +54,12 @@ router.get("/:cardId/card", async (req,res)=>{
         res.render('applications/error.ejs')
     }
 })
+
+
 //create new account
 router.post('/accounts', async (req,res)=>{
     try {
+        
         req.body.user = req.session.user._id
         await Account.create(req.body)
         res.redirect(`/users/${req.session.user._id}/bank-accounts`)
@@ -63,6 +68,8 @@ router.post('/accounts', async (req,res)=>{
         res.render('applications/error.ejs')
     }
 })
+
+
 // show per account
 router.get("/:accountId/account", async (req,res)=>{
     try {
