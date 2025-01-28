@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/card.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome <%= card.firstName %></h1>
-
+    <h1 id="card-title">Welcome <%= card.firstName %></h1>
+    <div class="card-container">
     <p>This is your <%= card.cardType %> card</p>
     <p>Name: <%= card.firstName %> <%= card.lastName %></p>
     <p>Phone Number: <%= card.phoneNumber %></p>
-    <h2>Delete Your Card</h2>
+    <p>Balance: 200BD</p>
+    <p>Card Number: 1234567890</p>
+    <p>Card Expiry: 12/25</p>
+    <p>Card CVV: 123</p>
+    <p>Card Type: <%= card.cardType %></p>
+    <p>Transaction History: 
+        <br>
+        150BD 12/25/2024
+        <br>
+        100BD 10/1/2024
+        <br>
+        200BD 11/17/2024
+        <br>
+        300BD 12/13/2024
+        <br>
+        400BD 5/10/2024
+        <br>
+        500BD 9/1/2024
+    </p>
+    </div>
     <ul>
         <form action="/users/<%= user._id %>/bank-accounts/<%= card._id %>?_method=DELETE" method="POST">
-            <button>Delete Your Card</button>
+            <button id="delete-button">Delete Your Card</button>
         </form>
     </ul>
 </body>
