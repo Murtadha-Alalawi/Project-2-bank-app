@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/new.css">
+    <div class="navbar">
     <%- include('../partials/_navbar.ejs') %>
+    </div>
     <title>Open new Account</title>
     <body>
-        <h1>Open New Account</h1>
+        <h1 class="title">Open New Account</h1>
+        <div class="add-new-account">
     <form action="/users/<%=user._id%>/bank-accounts/accounts" method="POST">
         <label for="type">Account Type</label>
         <select name="type" id="type">
             <option value="Checking">Checking</option>
             <option value="Savings">Savings</option>
         </select>
-        <label for="name">Account Name</label>
+        <br>    
+        <label for="name">Account Name:</label>
         <input type="text" name="name" id="name">
-        <label for="phoneNumber">Account user Phone Number</label>
+        <br>
+        <label for="phoneNumber">Account user Phone Number:</label>
         <input type="text" name="phoneNumber" id="phoneNumber">
-        <label for="address">Account user address</label>
+        <br>
+        <label for="address">Account user address:</label>
         <input type="text" name="address" id="address">
+        <br>
         <label for="user">Account username</label>
         <input type="text" name="user" id="user">
-        <button type="submit">Add new account</button>
+        <br>
+        <button class="button" type="submit">Add new account</button>
     </form>
+    </div>
     <br>
-    <h2>Add New Card</h2>
+    <h2 class="title">Add New Card</h2>
+    <div class="add-new-card">
     <form action="/users/<%=user._id%>/bank-accounts/cards" method="POST">
         <label for="cardType">Card Type</label>
         <select name="cardType" id="cardType">
@@ -33,15 +44,19 @@
         <option value="Discover">Discover</option>
         <option value="American Express">American Express</option>
     </select>
+    <br>
     <label for="phoneNumber">Phone Number</label>
     <input type="text" name="phoneNumber" id="phoneNumber">
+    <br>
     <label for="firstName">First Name</label>
     <input type="text" name="firstName" id="firstName">
+    <br>
     <label for="lastName">Last Card Name</label>
     <input type="text" name="lastName" id="lastName">
-    <button type="submit">Add new card</button>
+    <br>
+    <button class="button" type="submit">Add new card</button>
     </form>
-   
+    </div>
    
 </body>
 </html>
