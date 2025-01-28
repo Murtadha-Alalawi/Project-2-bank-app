@@ -1,0 +1,89 @@
+.card-container{
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #228af3;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#card-title{
+    color: #0c7dee;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(236, 229, 229, 0.1);
+    border: 2px solid #135bea;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dbe1eb;
+}
+.card-container:hover{
+    background-color: #dbe1eb;
+    color: #0c7dee;
+}
+
+.card-container p{
+    font-size: 16px;
+    color: #0a0303;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(244, 4, 4, 0.1);
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #135bea;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dbe1eb;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(244, 4, 4, 0.1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#delete-button{
+    background-color: rgb(246, 83, 83);
+    color: rgb(12, 1, 1);
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    border: 2px solid #135bea;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0b61ec;
+    border: 2px solid #135bea;
+}
+
+#delete-button:hover{
+    background-color: #f00b0b;
+}
+body{
+   background-image: url(https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}

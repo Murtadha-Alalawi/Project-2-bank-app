@@ -7,21 +7,30 @@
     <link rel="stylesheet" href="/styles/accounts.css">
 </head>
 <body>
+    <div class="navbar">
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome <%= user.firstName %></h1>
-    <h2>This is your account</h2>
+    </div>
+    <div class="account-info">
+    <h1 class="title">Welcome <%= user.firstName %></h1>
+    <h2 class="subtitle">This is your account</h2>
     <p>Name: <%= account.name %> </p>
     <p>Phone Number: <%= account.phoneNumber %></p>
     <p>Address: <%= account.address %></p>
+    </div>
+   <div class="update-account-container">
     <h2>Update Your Account</h2>
-    <ul></ul>
-        <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/edit">Update Your Account</a></li>
+    <ul>
+        <li class="update-account-link"><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/edit">Update Your Account</a></li>
     </ul>
+    </div>
+    <div class="delete-account-container">
     <h2>Delete Your Account</h2>
     <ul>
         <form action="/users/<%= user._id %>/bank-accounts/account/<%= account._id %>?_method=DELETE" method="POST">
-            <button>Delete Your Account</button>
+            <button id="delete-button">Delete Your Account</button>
         </form>
+    </div>
     </ul>
+    
 </body>
 </html>

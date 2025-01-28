@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/edit.css">
     <title>Editing <%= account.name %>'s account</title>
 </head>
 <body>
+    <div class="navbar">
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome <%= user.firstName %></h1>
-    <h2>Update Your Account</h2>
+    </div>
+    <h1 class="title">Welcome <%= user.firstName %></h1>
+    <h2 class="subtitle">Update Your Account</h2>
+    <div class="edit-account-container">
     <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=PUT" method="POST">
-        <label for="name">New account name</label>
+        <label class="edit-account-label" for="name">New account name</label>
         <input type="text" name="name" id="name" value="<%= account.name %>">
-        <label for="phoneNumber">New account phone number</label>
+        <br>
+        <label class="edit-account-label" for="phoneNumber">New account phone number</label>
         <input type="text" name="phoneNumber" id="phoneNumber" value="<%= account.phoneNumber %>">
-        <label for="address">New account address</label>
+        <br>
+        <label class="edit-account-label" for="address">New account address</label>
         <input type="text" name="address" id="address" value="<%= account.address %>">
-        <button type="submit">Save edit</button>
+        <br>
+    </div>
+        <button class="edit-account-button" type="submit">Save edit</button>
     </form>
+   
 </body>
 </html>

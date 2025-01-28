@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/show.css">
     <title>dashboard</title>
 </head>
 <body>
+    <div class="navbar">
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome <%= user.firstName %></h1>
-    <h2>Your Cards</h2>
+    </div>
+ 
+    <h1 class="title">Dashboard</h1>
+    <h2 class="subtitle">Your Cards</h2>
+    <div class="cards-container">
     <ul>
         <% if(cards){ cards.forEach(card => { %>
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= card._id %>/card"><%= card.cardType %></a></li>
         <% }) } %>
     </ul>
-    <h2>Your Accounts</h2>
+    </div>
+    <h2 class="your-accounts">Your Accounts</h2>
+    <div class="accounts-container">
     <ul>
         <% if(account){ account.forEach(account => { %>
             <li><a href="/users/<%= user._id %>/bank-accounts/<%= account._id %>/account"><%= account.name %></a></li>
         <% }) } %>
     </ul>
- 
+    </div>
 </body>
 </html>
