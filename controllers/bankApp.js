@@ -148,11 +148,12 @@ router.put('/:accountId', async (req,res)=>{
 
     const account = await Account.findById(req.params.accountId)
 
-    await account.save()
 
     console.log("checking req body", req.body)
 
     account.set(req.body)
+    await account.save()
+
 
     console.log("account", account)
     res.redirect(`/users/${req.session.user._id}/bank-accounts`)
