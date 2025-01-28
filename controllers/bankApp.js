@@ -115,8 +115,10 @@ router.delete('/:cardId', async (req,res)=>{
 
 
 //delete account
-router.delete('/:accountId', async (req,res)=>{
+router.delete('/account/:accountId', async (req,res)=>{
     try {
+        console.log(req.params)
+
         const account = await Account.findByIdAndDelete(req.params.accountId)
         
         

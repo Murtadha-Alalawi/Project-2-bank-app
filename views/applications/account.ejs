@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/accounts.css">
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
@@ -18,7 +19,7 @@
     </ul>
     <h2>Delete Your Account</h2>
     <ul>
-        <form action="/users/<%= user._id %>/bank-accounts/<%= account._id %>?_method=DELETE" method="POST">
+        <form action="/users/<%= user._id %>/bank-accounts/account/<%= account._id %>?_method=DELETE" method="POST">
             <button>Delete Your Account</button>
         </form>
     </ul>
